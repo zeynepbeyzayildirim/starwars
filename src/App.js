@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useCallback, useState, useEffect } from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import "./App.css";
+import particlesOptions from "./particle.json";
+import { Routes, Route, NavLink } from "react-router-dom";
+import HomePage from "./component/HomePage";
+import StarshipDetail from "./component/StarshipDetail";
+import axios from "axios";
 function App() {
+
+const[data,setData]= useState([]);
+useEffect(()=>{
+  const fetchData=async ()=>{
+    const response = await axios.get('https://swapi.dev/api/starship');
+    setData(response.data);
+  }
+})
+
+
+  const particlesInit = useCallback((main) => {
+    loadFull(main);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Particles
+        width="100vw"
+        height="100vh"
+        s
+        options={particlesOptions}
+        init={particlesInit}
+      />
+      <div >
+        <div>
+          <nav>
+            <NavLink to="/">Anasayfa</NavLink>
+            <NavLink to="/detail">StarShip</NavLink>
+          </nav>
+
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/detail" element={<StarshipDetail />} />
+          </Routes>
+        </div>
+      </div>
+    </>
   );
 }
 
