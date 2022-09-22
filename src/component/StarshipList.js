@@ -1,67 +1,62 @@
 import * as React from "react";
+import axios from "axios";
+import MyImage from "./MyImage";
+import { useState } from "react";
 
-const products = [
-
-  {
-    id: 1,
-    name: 'Earthen Bottle',
-    href: '#',
-    price: '$48',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
-    imageAlt: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-  },
-  {
-    id: 2,
-    name: 'Nomad Tumbler',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
-    imageAlt: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-  },
-  {
-    id: 3,
-    name: 'Focus Paper Refill',
-    href: '#',
-    price: '$89',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
-    imageAlt: 'Person using a pen to cross a task off a productivity paper card.',
-  },
-  {
-    id: 4,
-    name: 'Machined Mechanical Pencil',
-    href: '#',
-    price: '$35',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
-    imageAlt: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
-  },
-
-]
-
+const client = axios.create({
+  baseURL: "https://swapi.dev/api/starships/",
+});
 
 export default function StarshipList() {
-    return (
-        <div className="bg-transparant">
-          <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 className="sr-only">Products</h2>
-    
-            <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-              {products.map((product) => (
-                <a key={product.id} href={product.href} className="group">
-                  <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
-                    <img
-                      src={product.imageSrc}
-                      alt={product.imageAlt}
-                      className="h-full w-full object-cover object-center group-hover:opacity-75"
-                    />
-                  </div>
-                  <h3 className="mt-4 text-sm text-white">{product.name}</h3>
-                  <p className="mt-1 text-lg font-medium text-white">{product.price}</p>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      )
+  const [post, setPost] = React.useState(null);
+
+
+  React.useEffect(() => {
+    async function getPost() {
+      const response = await client.get();
+      setPost(response.data.results);
+    }
+    getPost();
+  }, []);
+
+  if (!post) return null;
+
+
+  return (
+    <>
+      <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        {post.map((it) => {
+          return (
+            <>
+            <div className="bg-transparant">
+                <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+                  <h2 className="sr-only">StarshipList</h2>
+
+                  <a key={it.id} href={it.href} className="group">
+                
+                    <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+                     <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                     <MyImage url={
+                          "https://starwars-visualguide.com/assets/img/starships/" +
+                          it.url.split("/")[it.url.split("/").length - 2] +
+                          ".jpg"
+                        }/>
+                    
+                     </div>
+                     
+                    </div>
+                    <h3 className="mt-4 text-sm text-white">{it.name}</h3>
+                    <p className="mt-1 text-lg font-medium text-white">
+                      {it.model}
+                    </p>
+                  </a>
+                </div>
+               
+              </div>
+            </>
+          );
+        })}
+      </div>
+    </>
+  );
 }
-
-

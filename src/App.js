@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React, { useCallback,} from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import "./App.css";
@@ -6,17 +6,11 @@ import particlesOptions from "./particle.json";
 import { Routes, Route, NavLink } from "react-router-dom";
 import HomePage from "./component/HomePage";
 import StarshipDetail from "./component/StarshipDetail";
-import axios from "axios";
+
+
+
+
 function App() {
-
-const[data,setData]= useState([]);
-useEffect(()=>{
-  const fetchData=async ()=>{
-    const response = await axios.get('https://swapi.dev/api/starship');
-    setData(response.data);
-  }
-})
-
 
   const particlesInit = useCallback((main) => {
     loadFull(main);
