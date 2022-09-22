@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import MyImage from "./MyImage";
 import { useState } from "react";
-import { Button, position } from "@chakra-ui/react";
+import { Button } from "@material-tailwind/react";
 
 const client = axios.create({
   baseURL: "https://swapi.dev/api/starships/",
@@ -22,11 +22,12 @@ export default function StarshipList() {
     const response = await client.get("?page=" + index);
   
     response.data.results.map(it=>{
-    console.log(it);
+
       post.push(it);
     })
     setPost([...post]);
   }
+
   React.useEffect(() => {
     getPost();
   }, [index]);
@@ -38,13 +39,14 @@ export default function StarshipList() {
   return (
     <>
       <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {post?.map((starships) => {
+        {
+          post?.map((starships,index) => {
           return (
             <>
-              <div key={index} className="bg-transparant">
+              <div className="bg-transparant">
                 <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                   <h2 className="sr-only text-white">StarshipList</h2>
-
+                
                   <a key={starships.id} href={starships.href} className="group">
                     <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
                       <div class="max-w-sm rounded overflow-hidden shadow-lg">
@@ -70,18 +72,25 @@ export default function StarshipList() {
               </div>
             </>
           );
-        })}
-        <Button
-          className="mt-4"
-          color={"white"}
+        })
+        }
+        <div className="flex items-center justify-center h-screen ">
+          <div className="flex gap-x-4">
+          <button 
+          type="button" 
+          class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           onClick={() => {
             
             setIndex(index + 1);
           
           }}
-        >
-          Load more
-        </Button>
+
+          >Load More</button>
+          </div>
+        </div>
+     
+   
+       
       </div>
     </>
   );
