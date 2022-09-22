@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "axios";
 import MyImage from "./MyImage";
 import { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { Button, position } from "@chakra-ui/react";
 
 const client = axios.create({
   baseURL: "https://swapi.dev/api/starships/",
@@ -13,11 +13,19 @@ const client = axios.create({
 export default function StarshipList() {
 
   const [index, setIndex] = useState(1);
-  const [post, setPost] = React.useState(null);
+
+  const [post, setPost] = React.useState([]);
+
 
   async function getPost() {
+
     const response = await client.get("?page=" + index);
-    setPost(response.data.results);
+  
+    response.data.results.map(it=>{
+    console.log(it);
+      post.push(it);
+    })
+    setPost([...post]);
   }
   React.useEffect(() => {
     getPost();
@@ -25,13 +33,15 @@ export default function StarshipList() {
 
   if (!post) return null;
 
+  
+
   return (
     <>
       <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {post?.map((starships) => {
           return (
             <>
-              <div className="bg-transparant">
+              <div key={index} className="bg-transparant">
                 <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                   <h2 className="sr-only text-white">StarshipList</h2>
 
@@ -65,7 +75,9 @@ export default function StarshipList() {
           className="mt-4"
           color={"white"}
           onClick={() => {
+            
             setIndex(index + 1);
+          
           }}
         >
           Load more
