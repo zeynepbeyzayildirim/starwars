@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import { loadFull } from "tsparticles";
 import Particles from "react-tsparticles";
-import particlesConfig from "./config/particles-config";
 import particlesOptions from "./../particle.json";
 
 const ParticlesBackground=() =>{
@@ -10,9 +9,13 @@ const ParticlesBackground=() =>{
     loadFull(main);
 }, [])
   return (
-  <Particles options={particlesOptions}>
-
-  </Particles>
+    <Particles
+    width="100vw"
+    height="100vh"
+    
+    options={particlesOptions}
+    init={particlesInit}
+  />
   );
 }
 export default ParticlesBackground;

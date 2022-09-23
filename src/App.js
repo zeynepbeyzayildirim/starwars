@@ -1,40 +1,41 @@
-import React, { useCallback,} from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+/* eslint-disable react/jsx-no-undef */
+import React, { useCallback, useState } from "react";
+
 import "./App.css";
-import particlesOptions from "./particle.json";
 import { Routes, Route, NavLink } from "react-router-dom";
-import HomePage from "./component/HomePage";
-import StarshipDetail from "./component/StarshipDetail";
 
-
-
+import ShipDetail from "./pages/ShipDetail";
+import Starships from "./pages/Starships";
+import ParticlesBackground from "./component/ParticlesBackground";
 
 function App() {
-
-  const particlesInit = useCallback((main) => {
-    loadFull(main);
-  }, []);
+ 
 
   return (
     <>
-      <Particles
-        width="100vw"
-        height="100vh"
-        s
-        options={particlesOptions}
-        init={particlesInit}
-      />
-      <div >
+     
+     <ParticlesBackground/>
+      <div>
+      
         <div>
           <nav>
             <NavLink to="/">Anasayfa</NavLink>
-            <NavLink to="/detail">StarShip</NavLink>
           </nav>
 
+          <div className="particlesheader">
+            <header>
+              <section class="hero  max-w-screen-lg mx-auto flex justify-center">
+                <img
+                  class="mx-auto"
+                  src="https://seeklogo.com/images/S/Star_Wars-logo-2B2C24F703-seeklogo.com.png"
+                  alt=""
+                ></img>
+              </section>
+            </header>
+          </div>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/detail" element={<StarshipDetail />} />
+            <Route path="/" element={<Starships />} />
+            <Route path="/starship/:id" element={<ShipDetail />} />
           </Routes>
         </div>
       </div>
