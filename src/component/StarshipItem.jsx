@@ -7,7 +7,8 @@ export default function StarshipItem({ starships }) {
       <div className="bg-transparant">
         <NavLink key={starships.id} to={"/starship/"+ starships.url.split("/")[
                       starships.url.split("/").length - 2
-                    ]} className="group">
+                    ]} 
+                    className="group">
           <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
             <h2 className="sr-only text-white">StarshipList</h2>
 

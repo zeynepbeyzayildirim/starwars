@@ -11,7 +11,7 @@ const client = axios.create({
   baseURL: "https://swapi.dev/api/starships/",
 });
 
-export default function Starships({ item }) {
+export default function Starships() {
   const [index, setIndex] = useState(1);
 
   var [post, setPost] = React.useState([]);
