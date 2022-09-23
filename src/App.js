@@ -18,10 +18,6 @@ function App() {
       <div>
       
         <div>
-          <nav>
-            <NavLink to="/">Anasayfa</NavLink>
-          </nav>
-
           <div className="particlesheader">
             <header>
               <section class="hero  max-w-screen-lg mx-auto flex justify-center">

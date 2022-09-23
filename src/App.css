@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* This won't be included in your compiled CSS unless you actually use it */
+  .card {
+    /* ... */
+  }
+}
+
 .App {
   text-align: center;
 }
