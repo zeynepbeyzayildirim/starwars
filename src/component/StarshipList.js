@@ -16,6 +16,8 @@ export default function StarshipList() {
 
   const [post, setPost] = React.useState([]);
 
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
 
   async function getPost() {
 
@@ -34,15 +36,43 @@ export default function StarshipList() {
 
   if (!post) return null;
 
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue)
+    if (searchInput !== '') {
+        const filteredData = post.filter((item) => {
+            return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+        })
+        setFilteredResults(filteredData)
+    }
+    else{
+        setFilteredResults(post)
+    }
+}
   
 
   return (
     <>
+      <div style={{ padding: 10 }}>
+            <input icon='search'
+                placeholder='Search...'
+                onChange={(e) => searchItems(e.target.value)}
+            /></div>
+             {searchInput.length > 1 ? (
+              filteredResults.map((item) => {
+               return (
+                <div className="container">
+                  <h1>{item.name}</h1>
+                </div>
+               );
+             })):
+           
       <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {
-          post?.map((starships,index) => {
+
+        { post?.map((starships) => {
+
           return (
             <>
+   
               <div className="bg-transparant">
                 <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
                   <h2 className="sr-only text-white">StarshipList</h2>
@@ -92,6 +122,8 @@ export default function StarshipList() {
    
        
       </div>
+             }       
     </>
+
   );
 }
