@@ -37,7 +37,10 @@ export default function ShipDetail() {
             <h5 class="mb-2 text-2xl font-bold tracking-tight font-mono text-gray dark:text-white , ">
               {post.name}
             </h5>
+           
             <MyImage url={imgUrl + id + ".jpg"}></MyImage>
+   
+         
             <p class="mb-3 font-normal font-mono text-gray-700 dark:text-gray-400 ">
               Model: {post.model}
             </p>
