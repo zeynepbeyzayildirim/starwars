@@ -3,8 +3,6 @@ import axios from "axios";
 
 import { useState } from "react";
 
-import { Routes, Route, NavLink } from "react-router-dom";
-import MyImage from "../component/MyImage";
 import StarshipItem from "../component/StarshipItem";
 
 const client = axios.create({
