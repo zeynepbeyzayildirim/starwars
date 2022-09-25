@@ -1,12 +1,14 @@
 /* eslint-disable react/jsx-no-undef */
-import React, { useCallback, useState } from "react";
+import React from "react";
 
 import "./App.css";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 import ShipDetail from "./pages/ShipDetail";
 import Starships from "./pages/Starships";
 import ParticlesBackground from "./component/ParticlesBackground";
+import Logo from "./component/Logo";
+import BackButton from "./component/BackButton";
 
 function App() {
  
@@ -18,16 +20,15 @@ function App() {
       <div>
       
         <div>
+
           <div className="particlesheader">
-            <header>
-              <section class="hero  max-w-screen-lg mx-auto flex justify-center">
-                <img
-                  class="mx-auto"
-                  src="https://seeklogo.com/images/S/Star_Wars-logo-2B2C24F703-seeklogo.com.png"
-                  alt=""
-                ></img>
-              </section>
-            </header>
+          <div class=	"grid gap-3 grid-cols-3">
+          <BackButton/> 
+          <Logo/>
+       
+        
+          </div>
+       
           </div>
           <Routes>
             <Route path="/" element={<Starships />} />

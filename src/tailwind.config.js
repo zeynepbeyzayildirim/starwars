@@ -30,7 +30,7 @@ module.exports = withMT({
   content: [],
   theme: {
     colors:{
-    
+    'main-color':'#fde61e'
     },
     extend: {}
     ,
