@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components {
   /* This won't be included in your compiled CSS unless you actually use it */
   .card {
@@ -13,6 +14,9 @@
   text-align: center;
 }
 
+body{
+  font-family: 'PT Serif', serif !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
