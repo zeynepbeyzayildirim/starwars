@@ -46,7 +46,7 @@ export default function Starships() {
 
   return (
     <>
-   
+    // Search Box 
       <form class="flex items-center">
         <label for="simple-search" class="sr-only h">
           Search
@@ -98,6 +98,7 @@ export default function Starships() {
         </button>
       </form>
 
+      // Starship Listesi
       <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {post.map((starships, index) => {
             return (
