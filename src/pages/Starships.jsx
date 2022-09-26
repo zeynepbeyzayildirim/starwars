@@ -46,11 +46,12 @@ export default function Starships() {
 
   return (
     <>
+   
       <form class="flex items-center">
-        <label for="simple-search" class="sr-only">
+        <label for="simple-search" class="sr-only h">
           Search
         </label>
-        <div class="relative w-full ml-10">
+        <div class="relative w-100 ml-10 mr-2">
           <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none ">
             <svg
               aria-hidden="true"
@@ -69,7 +70,7 @@ export default function Starships() {
           <input
             type="text"
             id="simple-search"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="text-gray-900 text-sm rounded-lg  w-full pl-10 p-2.5 peer outline-none font-mono font-bold"
             placeholder="Search"
             required
             onChange={(event) => setSearchInput(event.target.value)}
@@ -77,7 +78,7 @@ export default function Starships() {
         </div>
         <button
           type="submit"
-          class="p-2.5 ml-4 mr-12 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="p-2.5 text-sm font-medium text-black bg-[#fde61e] rounded-lg border border-black hover:bg-white focus:ring-4 focus:outline-none focus:ring-black"
         >
           <svg
             class="w-5 h-5"
@@ -93,7 +94,7 @@ export default function Starships() {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             ></path>
           </svg>
-          <span class="sr-only">Search</span>
+         
         </button>
       </form>
 
@@ -109,7 +110,7 @@ export default function Starships() {
           <div className="flex gap-x-4">
             <button
               type="button"
-              class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               onClick={() => {
                 setIndex(index + 1);
               }}

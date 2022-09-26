@@ -10,8 +10,7 @@ export default function StarshipItem({ starships }) {
                     ]} 
                     className="group">
           <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-            <h2 className="sr-only text-white">StarshipList</h2>
-
+           
             <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-2xl bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <div class="max-w-sm rounded-2xl overflow-hidden shadow-lg">
                 <MyImage

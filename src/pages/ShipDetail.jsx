@@ -34,8 +34,8 @@ export default function ShipDetail() {
     
       <div className="flex justify-center ">
       
-      <div class="max-w-lm px-8 bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 ">
-          <div class="p-3 mt-5 mb-5 border-black border-4 p-8 rounded-lg border-8 border-dotted">
+      <div class="max-w-lm px-8 bg-transparant rounded-lg shadow-md border-white border-4 border-solid ">
+          <div class=" bg-white p-10 mt-8 mb-8  border-black border-2 p-8 rounded-lg border-dotted">
             <h1 class="m-5 text-3xl font-bold tracking-tight font-mono text-gray dark:text-white text-center">
               {post.name}
             </h1>
