@@ -1,5 +1,7 @@
 # Star Wars Universe with SWAPI
 
+http://zeynepbeyzayildirim.tech/
+
 A project where we list the details of starships with ReactJS 
 
 ## Used Technologies
