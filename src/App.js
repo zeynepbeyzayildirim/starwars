@@ -20,12 +20,10 @@ function App() {
       <div>
       
         <div>
-
           <div className="particlesheader">
           <div class=	"grid gap-3 grid-cols-3">
           <BackButton/> 
           <Logo/>
-       
         
           </div>
        
