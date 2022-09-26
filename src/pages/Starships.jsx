@@ -79,7 +79,9 @@ export default function Starships() {
   async function getStarShipsList() {
     setIsLoading(true);
 
-    const response = await client.get(`?page=${pageIndex}&search=${searchInput}`);
+    const response = await client.get(
+      `?page=${pageIndex}&search=${searchInput}`
+    );
     setTimeout(function () {
       setIsLoading(false);
     }, 1000);
@@ -103,12 +105,10 @@ export default function Starships() {
     getStarShipsList();
   }, [pageIndex]);
 
-  
-
   function LoadMore() {
     return (
       <>
-        <div className="flex gap-x-4 items-center justify-center">
+        <div className="flex gap-x-4 items-center ">
           <button
             type="button"
             class="py-2.5 px-5 mr-2 mb-2 text-sm font-mono text-black  bg-[#fde61e] rounded-lg border border-black hover:bg-yellow-100"
@@ -123,18 +123,39 @@ export default function Starships() {
     );
   }
 
+  function GitHubButton() {
+    return (
+      <div className="mx-10 rounted-xl ">
+      <a href="https://github.com/zeynepbeyzayildirim/starwars">
+        <button class="bg-white hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center hover:bg-gray-500 ">
+          <img
+            class="w-7 h-7 mr-2"
+            src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+            alt=""
+          ></img>
+          <p className="text-black font-mono text-left w-30">gitHub</p>
+        </button>
+        </a>
+      </div>
+    );
+  }
+
   return (
     <>
-      <SearchInput
-        setSearchInput={(e) => {
-          setSearchInput(e);
-        }}
-      />
+      <div className="flex justify-start md:justify-between">
+        <SearchInput
+          setSearchInput={(e) => {
+            setSearchInput(e);
+          }}
+        />
+        <GitHubButton />
+      </div>
+    
+
       <Loading isLoading={isLoading}>
         <div>
           <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-            {
-              starShipsList.map((starShip, index) => {
+            {starShipsList.map((starShip, index) => {
               return (
                 <>
                   <StarShipItem starships={starShip} />

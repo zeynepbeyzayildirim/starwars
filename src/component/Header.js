@@ -1,3 +1,4 @@
+import GitHubButton from "react-github-button";
 import { useLocation, useNavigate } from "react-router";
 
 export default function Header() {
@@ -44,11 +45,15 @@ export default function Header() {
       <section class="grid gap-3 grid-cols-3">
         <RenderBackButton />
         <div className="hero  max-w-screen-lg mx-auto flex justify-center">
-          <img
-            class="mx-auto h-48 w-50 object-fit: contain"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Star_Wars_Logo..png/640px-Star_Wars_Logo.png"
-            alt=""
-          ></img>
+          <div>
+            <img
+              class="mx-auto h-48 w-50 object-fit: contain"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Star_Wars_Logo..png/640px-Star_Wars_Logo.png"
+              alt=""
+            ></img>
+
+         
+          </div>
         </div>
       </section>
     </>
