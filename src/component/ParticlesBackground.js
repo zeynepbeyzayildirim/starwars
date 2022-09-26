@@ -3,6 +3,8 @@ import { loadFull } from "tsparticles";
 import Particles from "react-tsparticles";
 import particlesOptions from "./../json/particle.json";
 
+{/*Hareketli arka planımız*/}
+
 const ParticlesBackground=() =>{
 
   const particlesInit = useCallback(main => {

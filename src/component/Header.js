@@ -6,6 +6,7 @@ export default function Header() {
   let location = useLocation();
 
   function RenderBackButton() {
+    {/*Eğer star ship detay sayfasındaysak buton gözüksün değilsek gözükmesin*/}
     if (location.pathname == "/")
       return (
         <>
@@ -43,9 +44,11 @@ export default function Header() {
   return (
     <>
       <section class="grid gap-3 grid-cols-3">
+      {/*Anasayfaya dönmek için back butonu çağırıyoruz*/}
         <RenderBackButton />
         <div className="hero  max-w-screen-lg mx-auto flex justify-center">
           <div>
+          {/*Logo Img */}
             <img
               class="mx-auto h-48 w-50 object-fit: contain"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Star_Wars_Logo..png/640px-Star_Wars_Logo.png"

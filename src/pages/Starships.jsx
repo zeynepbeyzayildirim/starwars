@@ -67,6 +67,7 @@ function SearchInput({ setSearchInput }) {
 }
 
 export default function Starships() {
+
   const [pageIndex, setPageIndex] = useState(1);
 
   var [starShipsList, setStarShipsList] = React.useState([]);
@@ -79,19 +80,20 @@ export default function Starships() {
   async function getStarShipsList() {
     setIsLoading(true);
 
+{/*Databasden data çektiğimiz kod*/}
     const response = await client.get(
       `?page=${pageIndex}&search=${searchInput}`
     );
     setTimeout(function () {
       setIsLoading(false);
     }, 1000);
-
+{/*Databaseden gelen dataları değikene atıyoruz*/}
     response.data.results.map((it) => {
       starShipsList.push(it);
     });
     setStarShipsList([...starShipsList]);
   }
-
+  {/*Search input değiştikçe sayfaya yeni verileri alıyoruz */}
   React.useEffect(() => {
     if (isFirst) {
       starShipsList = [];
@@ -101,6 +103,7 @@ export default function Starships() {
     setFirst(true);
   }, [searchInput]);
 
+{/*Sayfa değiştikce bir sonraki sayfadaki verileri yüklüyoruz */}
   React.useEffect(() => {
     getStarShipsList();
   }, [pageIndex]);
@@ -126,15 +129,15 @@ export default function Starships() {
   function GitHubButton() {
     return (
       <div className="mx-10 rounted-xl ">
-      <a href="https://github.com/zeynepbeyzayildirim/starwars">
-        <button class="bg-white hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center hover:bg-gray-500 ">
-          <img
-            class="w-7 h-7 mr-2"
-            src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-            alt=""
-          ></img>
-          <p className="text-black font-mono text-left w-30">gitHub</p>
-        </button>
+        <a href="https://github.com/zeynepbeyzayildirim/starwars">
+          <button class="bg-white hover:bg-grey text-grey-darkest font-bold py-2 px-4 rounded inline-flex items-center hover:bg-gray-500 ">
+            <img
+              class="w-5 h-5 mr-2"
+              src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+              alt=""
+            ></img>
+            <p className="text-black font-mono text-left w-30">gitHub</p>
+          </button>
         </a>
       </div>
     );
@@ -142,26 +145,33 @@ export default function Starships() {
 
   return (
     <>
+      {/* Header'ın altına search box ve github butonunu ekliyoruz.*/}
       <div className="flex justify-start md:justify-between">
+        {/*Search box */}
         <SearchInput
           setSearchInput={(e) => {
             setSearchInput(e);
+              {/*search box dan gelen değeri değişkene atıyoruz.*/}
           }}
         />
+        {/*Github fonksiyonunu çağırdık*/}
+        
         <GitHubButton />
       </div>
-    
 
       <Loading isLoading={isLoading}>
         <div>
-          <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+          <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8 mx-10">
+            {/* Database den gelen veriler burada listelenir */}
             {starShipsList.map((starShip, index) => {
               return (
                 <>
+                  {/* Gelen datalar Item companentine gönderiliyor. */}
                   <StarShipItem starships={starShip} />
                 </>
               );
             })}
+            {/* Daha fazla yükle fonksiyonunu çağırıyoruz. */}
             <LoadMore />
           </div>
         </div>

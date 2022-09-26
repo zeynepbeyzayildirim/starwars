@@ -4,25 +4,33 @@ import axios from "axios";
 import ImageLoader from "../component/ImageLoader";
 import Loading from "../component/Loading";
 
+{/*Star wars api urlsini .env dosyasından alıyoruz*/}
 const client = axios.create({
   baseURL: process.env.REACT_APP_STAR_WARS_API,
 });
 
 export default function ShipDetail() {
+
+  {/*img lerin urlsini çekmek için id lerine erişilir */}
   const { id } = useParams();
 
   var [starShip, setStarShip] = React.useState({});
   var [isLoading, setLoading] = React.useState(true);
 
+  {/*Gemilerin detaylarını çektiğimiz yer*/}
   async function getShipDetail() {
     const response = await client.get(`${id}` + "/");
+   {/*Loading başta false geliyor datalar yüklenene kadar*/}
     setLoading(false);
+    {/*Gelen dataları setStarshipe atıyoruz.*/}
     setStarShip(response.data);
   }
+  {/*Sayfa ilk açıldığında geminin detaylarını çekiyor*/}
   React.useEffect(() => {
     getShipDetail();
   }, []);
 
+  {/*Label function*/}
   function Label({ tittle, data }) {
     return (
       <>
@@ -35,6 +43,7 @@ export default function ShipDetail() {
 
   return (
     <>
+    {/*Sayfayı Loading componenti ile sarmalıyoruz datalar yüklenene kadar loading dönüyor*/}
       <Loading isLoading={isLoading}>
         <div className="flex justify-center ">
           <div class="max-w-lm px-8 bg-transparant rounded-lg shadow-md border-white border-4 border-solid ">
