@@ -19,24 +19,21 @@ export default function Starships() {
 
   async function getPost() {
     const response = await client.get(`?page=${index}&search=${searchInput}`);
- 
+
     response.data.results.map((it) => {
       post.push(it);
     });
     setPost([...post]);
   }
 
-  React.useEffect(()=>{
-
-    if(isFirst)
-    {
-        post=[];
-        setIndex(1);
-        getPost();
+  React.useEffect(() => {
+    if (isFirst) {
+      post = [];
+      setIndex(1);
+      getPost();
     }
     setFirst(true);
-  
-  },[searchInput])
+  }, [searchInput]);
 
   React.useEffect(() => {
     getPost();
@@ -46,8 +43,7 @@ export default function Starships() {
 
   return (
     <>
-    // Search Box 
-      <form class="flex items-center">
+      <form class="flex items-center mb-10">
         <label for="simple-search" class="sr-only h">
           Search
         </label>
@@ -94,24 +90,25 @@ export default function Starships() {
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             ></path>
           </svg>
-         
         </button>
       </form>
 
-      // Starship Listesi
       <div className="grid grid-cols- gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {post.map((starships, index) => {
-            return (
-              <>
-                <StarshipItem starships={starships}/>
-              </>
-            );
-          })}
-        <div className="flex items-center justify-center h-screen ">
+          return (
+            <>
+              <StarshipItem starships={starships} />
+            </>
+          );
+        })}
+
+
+        <div className="flex items-center justify-center">
           <div className="flex gap-x-4">
             <button
               type="button"
-              class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              class="py-2.5 px-5 mr-2 mb-2 text-sm font-mono text-black 
+               bg-[#fde61e] rounded-lg border border-black hover:bg-yellow-100"
               onClick={() => {
                 setIndex(index + 1);
               }}
